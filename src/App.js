@@ -1,10 +1,25 @@
-
+import axios from "axios";
+import React from "react";
 import './App.css';
 import ProductItem from './components/ProductItem';
-import data from './data';
+
+
+const baseURL = "https://dummyjson.com/products";
 
 function App() {
-  var data1 = data['products'];
+
+  const [pdata, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setData(response.data);
+    });
+  }, []);
+
+  if (!pdata) return null;
+
+  var data1 = pdata['products'];
+
   let itemList = [];
   data1.forEach((item, index) => {
     itemList.push(
