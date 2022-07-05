@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+
 import './App.css';
+import ProductItem from './components/ProductItem';
+import data from './data';
 
 function App() {
+  var data1 = data['products'];
+  let itemList = [];
+  data1.forEach((item, index) => {
+    itemList.push(
+    <ProductItem 
+        title={item.title} 
+        src={item.thumbnail} 
+        price={item.price} 
+        rating={item.rating} 
+        desc={item.description} 
+        category={item.category} 
+        brand={item.brand} 
+        stock={item.stock} />)
+  })
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {itemList}
     </div>
+
   );
 }
 
